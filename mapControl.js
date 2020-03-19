@@ -21,6 +21,7 @@ function initMap() {
     position: {lat: 59.350666, lng: 18.068110}
   });
   marker.addListener('click', toggleBounce);
+
 }
 
 function toggleBounce() {
