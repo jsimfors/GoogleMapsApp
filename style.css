@@ -7,6 +7,12 @@
  
 }
 
+.add-button {
+    position: absolute;
+    top: 1px;
+    left: 1px;
+  }
+
 /* Optional: Makes the sample page fill the window. */
 html, body {
  background-color: rgb(230, 230, 230);

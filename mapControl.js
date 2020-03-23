@@ -3,46 +3,37 @@ var map;
 var marker;
 
 let deferredPrompt;
+const addBtn = document.querySelector('.add-button');
+addBtn.style.display = 'none';
 
 window.addEventListener('beforeinstallprompt', (e) => {
+  console.log('hej igen')
   // Prevent the mini-infobar from appearing on mobile
   e.preventDefault();
   // Stash the event so it can be triggered later.
   deferredPrompt = e;
   // Update UI notify the user they can install the PWA
-  showInstallPromotion();
-  console.log('hej igen')
+  
+  addBtn.style.display = 'block';
+
+  addBtn.addEventListener('click', (e) => {
+    // hide our user interface that shows our A2HS button
+    addBtn.style.display = 'none';
+    // Show the prompt
+    deferredPrompt.prompt();
+    // Wait for the user to respond to the prompt
+    deferredPrompt.userChoice.then((choiceResult) => {
+        if (choiceResult.outcome === 'accepted') {
+          console.log('User accepted the A2HS prompt');
+        } else {
+          console.log('User dismissed the A2HS prompt');
+        }
+        deferredPrompt = null;
+      });
+  
+  });
 });
 
-new showInstallPromotion()
-
-function showInstallPromotion(){
-  
-  var buttonInstall = document.createElement('button')
-
-  buttonInstall.addEventListener('click', (e) => {
-      
-      //Do we need this?
-      // Hide the app provided install promotion
-      hideMyInstallPromotion();
-
-      // Show the install prompt
-      deferredPrompt.prompt();
-      // Wait for the user to respond to the prompt
-      deferredPrompt.userChoice.then((choiceResult) => {
-        if (choiceResult.outcome === 'accepted') {
-          Console.log('User accepted the install prompt');
-        } else {
-          Console.log('User dismissed the install prompt');
-        }
-      })
-    });
-  
-  buttonInstall.innerText = 'KNAPP';
-  document.getElementById('map-controllers').appendChild(buttonInstall)
-
-  console.log('hejhej')
-}
 
 function initMap() {
   map = new google.maps.Map(document.getElementById('map'), {
