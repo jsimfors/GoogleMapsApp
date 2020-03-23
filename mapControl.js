@@ -183,10 +183,20 @@ function MapControl(controlDiv, map) {
       }
 
     // JOE'S POSITION:
-    var rotateButton = document.createElement('button');
-    rotateButton.id = "joe";
-    rotateButton.innerText = "Visa Joe's favoritplats";
-    controlDiv.appendChild(rotateButton);
+    var joeButton = document.createElement('button');
+    joeButton.id = "joe";
+    joeButton.innerText = "Visa Joe's favorite secret fishing places";
+    controlDiv.appendChild(joeButton);
+    google.maps.event.addDomListener(joeButton, 'click', function() { 
+      var pos = {lat: 51.508671, lng: -0.086264 };
+      map.setCenter(pos); // centrera kring ny location
+      markerJoe = new google.maps.Marker({
+        map: map,
+        draggable: true,
+        animation: google.maps.Animation.DROP,
+        position: pos
+      });
+    })
 
     // MOE'S POSITION:
     var rotateButton = document.createElement('button');
