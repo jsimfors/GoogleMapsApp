@@ -12,7 +12,7 @@ function initMap() {
 
   // Add control-panel:
   new MapControl(document.getElementById('map-controllers'), map);
-  
+
   // Animations:
   // Marker 1:  (Dragable)
   marker1 = new google.maps.Marker({
@@ -40,11 +40,11 @@ function toggleBounce() {
   }
 }
 
-// ENTER FULLSCREEN: (for computer only :( ))
-var goFS = document.getElementById("goFS");
-goFS.addEventListener("click", function() {
-    document.body.requestFullscreen();
-}, false);
+// // ENTER FULLSCREEN: (for computer only :( ))
+// var goFS = document.getElementById("goFS");
+// goFS.addEventListener("click", function() {
+//     document.body.requestFullscreen();
+// }, false); (lägg till id="goFS" på button)
 
 
 // THE CONTROLLERS
@@ -69,7 +69,7 @@ function MapControl(controlDiv, map) {
     // Setup the click event listener - zoomOut
     google.maps.event.addDomListener(zoomOutButton, 'click', function() {
     map.setZoom(map.getZoom() - 1);
-    });  
+    });
 
 
     // PANNING
