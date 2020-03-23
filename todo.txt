@@ -4,7 +4,7 @@ Erbjud att ladda ner google maps appen när man kommer in på sidan
 
 Någon lögsning med fullscreen/hiding adress bar. - DONE!
 
-Sägga till en here-button som hittar användarens location - Påbörjar denna!
+Lägga till en here-button som hittar användarens location - Påbörjar denna!
 
 En Moe-there button, som visar Moes favoritställe
 
