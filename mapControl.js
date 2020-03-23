@@ -2,6 +2,16 @@
 var map, infoWindow;
 var marker;
 
+// Register service worker to control making site work offline
+
+if('serviceWorker' in navigator) {
+  navigator.serviceWorker
+           .register('sw.js')
+           .then(function() { console.log('Service Worker Registered'); });
+}
+
+// Code to handle install prompt on desktop
+
 let deferredPrompt;
 const addBtn = document.querySelector('.add-button');
 // addBtn.style.display = 'none';
@@ -199,10 +209,24 @@ function MapControl(controlDiv, map) {
     })
 
     // MOE'S POSITION:
-    var rotateButton = document.createElement('button');
-    rotateButton.id = "moe";
-    rotateButton.innerText = "Visa Moe's favoritplats";
-    controlDiv.appendChild(rotateButton);
+    var moeButton = document.createElement('button');
+    moeButton.id = "moe";
+    moeButton.innerText = "Visa Moe's favoritplats";
+    controlDiv.appendChild(moeButton);
+    google.maps.event.addDomListener(moeButton, 'click', function() { 
+      var pos = {lat: 40.733082, lng: -74.004079 };
+      map.setCenter(pos); // centrera kring ny location
+      markerJoe = new google.maps.Marker({
+        map: map,
+        draggable: true,
+        animation: google.maps.Animation.DROP,
+        position: pos
+      });
+    })
+
+
+
+    
 
 }
 
