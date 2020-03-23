@@ -1,7 +1,7 @@
 /* Always set the map height explicitly to define the size of the div
 * element that contains the map. */
 #map {
- height: 90%;
+ height: 85%;
  border-radius: 50px;
  margin: 12px;
  
@@ -13,6 +13,7 @@ html, body {
  height: 100%;
  margin: 0;
  padding: 0;
+ text-align: center;
 }
 
 #map-controllers {
@@ -59,4 +60,13 @@ html, body {
 
 #panDown {
     background-color: #4885ed;
+}
+
+#goFS{
+    background-color: rgba(0, 0, 0, 0.687);
+    padding: 5px;
+    margin-top: 10px;
+    color: white;
+    border-radius: 5px;
+    text-align: center;
 }

@@ -1,0 +1,11 @@
+Lägg till en andra marker som inte är dragable - DONE!
+
+Erbjud att ladda ner google maps appen när man kommer in på sidan
+
+Någon lögsning med fullscreen/hiding adress bar.
+
+Sägga till en here-button som hittar användarens location
+
+En Moe-there button, som visar Moes favoritställe
+
+En Joe-there button, som visar Joes favoritställe

@@ -2,6 +2,9 @@
 var map;
 var marker;
 
+// ENTER FULLSCREEN:
+
+
 function initMap() {
   map = new google.maps.Map(document.getElementById('map'), {
     center: {lat: 59.3498092, lng: 18.0684758},
@@ -14,26 +17,36 @@ function initMap() {
   new MapControl(document.getElementById('map-controllers'), map);
   
   // Animations:
-  marker = new google.maps.Marker({
+  // Marker 1:  (Dragable)
+  marker1 = new google.maps.Marker({
     map: map,
     draggable: true,
     animation: google.maps.Animation.DROP,
     position: {lat: 59.350666, lng: 18.068110}
   });
-  marker.addListener('click', toggleBounce);
+  marker1.addListener('click', toggleBounce);
 
+    // Marker 2:  (Not dragable)
+    marker2 = new google.maps.Marker({
+      map: map,
+      draggable: false,
+      animation: google.maps.Animation.DROP,
+      position: {lat: 59.348094, lng: 18.071313}
+    });
 }
 
 function toggleBounce() {
-  if (marker.getAnimation() !== null) {
-    marker.setAnimation(null);
+  if (marker1.getAnimation() !== null) {
+    marker1.setAnimation(null);
   } else {
-    marker.setAnimation(google.maps.Animation.BOUNCE);
+    marker1.setAnimation(google.maps.Animation.BOUNCE);
   }
-
-
 }
 
+var goFS = document.getElementById("goFS");
+goFS.addEventListener("click", function() {
+    document.body.requestFullscreen();
+}, false);
 
 
 // THE CONTROLLERS
