@@ -1,5 +1,5 @@
 // INITIATE THE MAP
-var map;
+var map, infoWindow;
 var marker;
 
 let deferredPrompt;
@@ -13,7 +13,6 @@ window.addEventListener('beforeinstallprompt', (e) => {
   // Stash the event so it can be triggered later.
   deferredPrompt = e;
   // Update UI notify the user they can install the PWA
-  
   addBtn.style.display = 'block';
 
   addBtn.addEventListener('click', (e) => {
@@ -141,12 +140,59 @@ function MapControl(controlDiv, map) {
       map.panBy(0, 50);
       });
 
-    // ROTATE VIEW:
+    // MY POSITION:
+
+    // Ruta som poppar upp när användarens position hittas:
+    // Eller för att säga att Localtion-service inte funkar (tex. om användaren blockar GPS)
+    infoWindow = new google.maps.InfoWindow;
+
+    var hereButton = document.createElement('button');
+    hereButton.id = "here";
+    hereButton.innerText = 'Visa min position';
+    controlDiv.appendChild(hereButton);
+
+    google.maps.event.addDomListener(hereButton, 'click', function() {
+      // Hit kommer vi när användaren försöker hitta sin plats!
+        if (navigator.geolocation) { // OM användarens browser stödjer GPS:
+          navigator.geolocation.getCurrentPosition(function(position) {
+            var pos = {
+              lat: position.coords.latitude,
+              lng: position.coords.longitude
+            };
+
+            infoWindow.setPosition(pos);
+            infoWindow.setContent('Här är du kompis!');
+            infoWindow.open(map);
+            map.setCenter(pos); // centrera kring ny location
+          }, function() {
+            handleLocationError(true, infoWindow, map.getCenter());
+          });
+        } else {
+          // Browser doesn't support Geolocation
+          handleLocationError(false, infoWindow, map.getCenter());
+        }
+      });
+    
+
+      function handleLocationError(browserHasGeolocation, infoWindow, pos) {
+        infoWindow.setPosition(pos);
+        infoWindow.setContent(browserHasGeolocation ?
+                              'Error: The Geolocation service failed.' :
+                              'Error: Your browser doesn\'t support geolocation.');
+        infoWindow.open(map);
+      }
+
+    // JOE'S POSITION:
     var rotateButton = document.createElement('button');
-    rotateButton.id = "rotate";
-    rotateButton.innerText = 'ROTATE VIEW';
+    rotateButton.id = "joe";
+    rotateButton.innerText = "Visa Joe's favoritplats";
     controlDiv.appendChild(rotateButton);
 
+    // MOE'S POSITION:
+    var rotateButton = document.createElement('button');
+    rotateButton.id = "moe";
+    rotateButton.innerText = "Visa Moe's favoritplats";
+    controlDiv.appendChild(rotateButton);
 
 }
 
