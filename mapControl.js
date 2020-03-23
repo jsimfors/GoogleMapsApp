@@ -2,6 +2,48 @@
 var map;
 var marker;
 
+let deferredPrompt;
+
+window.addEventListener('beforeinstallprompt', (e) => {
+  // Prevent the mini-infobar from appearing on mobile
+  e.preventDefault();
+  // Stash the event so it can be triggered later.
+  deferredPrompt = e;
+  // Update UI notify the user they can install the PWA
+  showInstallPromotion();
+  console.log('hej igen')
+});
+
+new showInstallPromotion()
+
+function showInstallPromotion(){
+  
+  var buttonInstall = document.createElement('button')
+
+  buttonInstall.addEventListener('click', (e) => {
+      
+      //Do we need this?
+      // Hide the app provided install promotion
+      hideMyInstallPromotion();
+
+      // Show the install prompt
+      deferredPrompt.prompt();
+      // Wait for the user to respond to the prompt
+      deferredPrompt.userChoice.then((choiceResult) => {
+        if (choiceResult.outcome === 'accepted') {
+          Console.log('User accepted the install prompt');
+        } else {
+          Console.log('User dismissed the install prompt');
+        }
+      })
+    });
+  
+  buttonInstall.innerText = 'KNAPP';
+  document.getElementById('map-controllers').appendChild(buttonInstall)
+
+  console.log('hejhej')
+}
+
 function initMap() {
   map = new google.maps.Map(document.getElementById('map'), {
     center: {lat: 59.3498092, lng: 18.0684758},
