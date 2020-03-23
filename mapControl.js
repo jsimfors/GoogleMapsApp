@@ -2,9 +2,6 @@
 var map;
 var marker;
 
-// ENTER FULLSCREEN:
-
-
 function initMap() {
   map = new google.maps.Map(document.getElementById('map'), {
     center: {lat: 59.3498092, lng: 18.0684758},
@@ -43,6 +40,7 @@ function toggleBounce() {
   }
 }
 
+// ENTER FULLSCREEN: (for computer only :( ))
 var goFS = document.getElementById("goFS");
 goFS.addEventListener("click", function() {
     document.body.requestFullscreen();
