@@ -6,7 +6,7 @@ var marker;
 
 if('serviceWorker' in navigator) {
   navigator.serviceWorker
-    .register('sw.js')
+    .register('/GoogleMapsApp/sw.js')
     .then(function() { console.log('Service Worker Registered'); });
 }
 
@@ -14,7 +14,7 @@ if('serviceWorker' in navigator) {
 
 let deferredPrompt;
 const addBtn = document.querySelector('.add-button');
-// addBtn.style.display = 'none';
+ addBtn.style.display = 'none';
 
 window.addEventListener('beforeinstallprompt', (e) => {
   console.log('hej igen')

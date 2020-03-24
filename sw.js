@@ -2,9 +2,9 @@ self.addEventListener('install', function(e) {
     e.waitUntil(
       caches.open('video-store').then(function(cache) {
         return cache.addAll([
-          '/GoogleMapsApp',
-          '/GoogleMapsApp/mapControl.js',
+          '/GoogleMapsApp/',
           '/GoogleMapsApp/index.html',
+          '/GoogleMapsApp/mapControl.js',
           '/GoogleMapsApp/style.css'
         ]);
       })
