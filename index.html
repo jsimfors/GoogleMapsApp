@@ -19,7 +19,6 @@
     <link href="/loadScreens/1125.png" sizes="1125x2436" rel="apple-touch-startup-image" />
     <link href="/loadScreens/750.png" sizes="750x1334" rel="apple-touch-startup-image" />
 
-
     <meta charset="utf-8">
     <link rel="stylesheet" type="text/css" href="style.css">
     <link rel="manifest" href="manifest.webmanifest">
@@ -27,8 +26,12 @@
 
   <body>
     <div id="map"></div>
-    <div id="map-controllers"></div>
-    <button class="add-button">Add to home screen</button>
+    <div id="map-controllers">
+      <div class="popup">
+        <span class="popuptext" id="myPopup">Add app to homescreen</span>
+      </div>
+    </div>
+
     <script src="mapControl.js"></script>
     <script src="https://maps.googleapis.com/maps/api/js?callback=initMap" async defer></script>
   </body>
