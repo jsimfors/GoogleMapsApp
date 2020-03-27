@@ -56,13 +56,22 @@ function activate() {
   }
 
   let isApple = ['iPhone', 'iPad', 'iPod'].includes(navigator.platform);  // #1 is to check if they're on an ios device
+  var popup = document.getElementById("myPopup");
 
     if (isApple) {
-        var popup = document.getElementById("myPopup");
         popup.classList.toggle("show");    
     }
+    var close = document.getElementById("close");
+    // close.onClick = function() {console.log("Hiding!")} 
+    document.getElementById("close").addEventListener("click", hiding);
+    // close.onClick = function() {popup.classList.toggle("hide")} 
   }
 
+  function hiding(){
+
+    document.getElementById("myPopup").classList.toggle("hide")
+    console.log("Hiding!")
+  }
 
 function initMap() {
   activate()
@@ -219,8 +228,9 @@ function MapControl(controlDiv, map) {
     joeButton.innerText = "Visa Joe's favorite secret fishing places";
     controlDiv.appendChild(joeButton);
     google.maps.event.addDomListener(joeButton, 'click', function() { 
-      var pos = {lat: 51.508671, lng: -0.086264 };
+      var pos = {lat: 51.502932, lng: -0.119313 };
       map.setCenter(pos); // centrera kring ny location
+      map.setZoom(20);
       markerJoe = new google.maps.Marker({
         map: map,
         draggable: true,
