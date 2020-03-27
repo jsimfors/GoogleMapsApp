@@ -50,27 +50,22 @@ function needsToSeePrompt() { // #1 is to check if they're on an ios device
 }
 
 function activate() {
-  console.log("I'm in the activate")
   document.getElementById("close").addEventListener("click", hiding);
   var popup = document.getElementById("myPopup");
   let isApple = ['iPhone', 'iPad', 'iPod'].includes(navigator.platform);  // #1 is to check if they're on an ios device
 
-
-  if (navigator.standalone) { // if they add it to the homescreen = standalone = do not need to see prompt
-    popup.classList.toggle("hide");  
+  if (!(isApple && !navigator.standalone)) { 
+    // if they add it to the homescreen = standalone = do not need to see prompt
+    // we only want to do this to iPhones, since androids always suggests adding to homescreen?
+    popup.classList.toggle("show");  
     return false;
-  }
-
-    if (isApple) {
-        popup.classList.toggle("show");    
-    }else{
-      popup.classList.toggle("hide");  
+  }else{
+    popup.classList.toggle("hide");  
     }
   }
 
   function hiding(){
     document.getElementById("myPopup").classList.toggle("hide")
-    console.log("Hiding!")
   }
 
 function initMap() {
