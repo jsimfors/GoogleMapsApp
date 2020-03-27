@@ -60,15 +60,14 @@ function activate() {
 
     if (isApple) {
         popup.classList.toggle("show");    
+    }else{
+      popup.classList.toggle("hide");  
     }
     var close = document.getElementById("close");
-    // close.onClick = function() {console.log("Hiding!")} 
     document.getElementById("close").addEventListener("click", hiding);
-    // close.onClick = function() {popup.classList.toggle("hide")} 
   }
 
   function hiding(){
-
     document.getElementById("myPopup").classList.toggle("hide")
     console.log("Hiding!")
   }
