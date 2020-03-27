@@ -54,11 +54,10 @@ function activate() {
   var popup = document.getElementById("myPopup");
   let isApple = ['iPhone', 'iPad', 'iPod'].includes(navigator.platform);  // #1 is to check if they're on an ios device
 
-  if (!(isApple && !navigator.standalone)) { 
+  if (isApple && !navigator.standalone) { 
     // if they add it to the homescreen = standalone = do not need to see prompt
     // we only want to do this to iPhones, since androids always suggests adding to homescreen?
     popup.classList.toggle("show");  
-    return false;
   }else{
     popup.classList.toggle("hide");  
     }
